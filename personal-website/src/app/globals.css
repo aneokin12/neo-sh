@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #1E1E1E; /* Changed to match terminal background */
+  --foreground: #F8F8F8; /* Changed to match terminal foreground */
+  --color-background: #1E1E1E;
+  --color-foreground: #F8F8F8;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars */
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-geist-mono), monospace; /* Use the Geist Mono font for better terminal aesthetics */
+}
+
+/* Outer container that takes the full screen and handles padding */
+.terminal-outer-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  padding: 40px; /* Add padding around the terminal */
+  box-sizing: border-box;
+  background-color: var(--background);
+}
+
+/* Inner container for the actual terminal */
+.terminal-inner-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--background);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Ensure the terminal doesn't stretch its content */
+.xterm {
+  display: block;
+  /* Don't allow the terminal to change its character dimensions to fill space */
+  /* which would cause distortion */
+}
+
+.xterm-viewport {
+  /* Make sure the viewport scrollbar appears when needed but doesn't affect layout */
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Style the terminal scrollbar */
+.xterm-viewport::-webkit-scrollbar {
+  width: 6px;
+}
+
+.xterm-viewport::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
